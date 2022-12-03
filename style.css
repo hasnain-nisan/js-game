@@ -7,3 +7,12 @@
     width: 600px;
     height: 600px;
 }
+
+select {
+    position: absolute;
+    top: 25%;
+    left: 10%;
+    font-size: large;
+    padding: 10px;
+    border-radius: 10px;
+}
