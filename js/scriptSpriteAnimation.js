@@ -95,9 +95,3 @@ function animate() {
 }
 
 animate()
-
-const changePlayerState = (val) => {
-    playerState = val;
-}
-
-console.log(ctx);
