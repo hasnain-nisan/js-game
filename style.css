@@ -13,3 +13,7 @@ body {
     height: 1000px;
 }
 
+#canvas1:active {
+    cursor: pointer;
+}
+
