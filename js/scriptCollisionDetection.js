@@ -14,3 +14,23 @@ const checkCollisionBetweenRects = (rect1, rect2) => {
     }
 }
 // collision detection between two rectangle
+
+// collision detection between two circles
+var circle1 = {x: 200, y: 200, radius: 100};
+var circle2 = { x: 350, y: 200, radius: 50 };
+
+const checkCollisionBetweenCircles = (circle1, circle2) => {
+    let dx = circle2.x - circle1.x;
+    let dy = circle2.y - circle1.y;
+    let distance = Math.sqrt(dx * dx + dy * dy);
+    let sumOfRadius = circle1.radius + circle2.radius;
+
+    if(distance < sumOfRadius){
+        return 'circle collide';
+    } else if (distance === sumOfRadius){
+        return 'circles are touching';
+    } else if (distance > sumOfRadius){
+        return 'no collision';
+    }
+}
+// collision detection between two circles
