@@ -10,6 +10,7 @@ const collisionCtx = collisionCanvas.getContext("2d", {
 });
 const collisionCanvas_WIDTH = (collisionCanvas.width = window.innerWidth);
 const collisionCanvas_HEIGHT = (collisionCanvas.height = window.innerHeight);
+let gameSpeed = 15;
 let score = 0;
 let missed = 0;
 let gameOver = false;
@@ -29,7 +30,7 @@ class Raven {
         this.height = this.spriteHeight * this.sizeModifier;
         this.x = canvas.width
         this.y = Math.random() * (canvas.height - this.height);
-        this.directionX = Math.random() * 5 + 3;
+        this.directionX = Math.random() * 12 + 3;
         this.directionY = Math.random() * 6 - 3;
         this.markedForDeletion = false;
         this.image = new Image();
@@ -67,7 +68,7 @@ class Raven {
                 }
             }
         }
-        // if(missed === 10) gameOver = true;
+        if(missed === 50) gameOver = true;
     }
     draw(){
         // ctx.beginPath();
@@ -148,6 +149,66 @@ class Particle {
     }
 }
 
+const backgroundLayer1 = new Image();
+backgroundLayer1.src = "../backgroundLayers/layer-1.png";
+const backgroundLayer2 = new Image();
+backgroundLayer2.src = "../backgroundLayers/layer-2.png";
+const backgroundLayer3 = new Image();
+backgroundLayer3.src = "../backgroundLayers/layer-3.png";
+const backgroundLayer4 = new Image();
+backgroundLayer4.src = "../backgroundLayers/layer-4.png";
+const backgroundLayer5 = new Image();
+backgroundLayer5.src = "../backgroundLayers/layer-5.png";
+
+class backgroundLayer {
+  constructor(image, speedModifier, type) {
+    this.x = 0;
+    this.y = 0;
+    this.width = window.innerWidth;
+    this.height = window.innerHeight;
+    this.image = image;
+    this.speedModifier = speedModifier;
+    this.speed = gameSpeed * this.speedModifier;
+    this.type = type;
+  }
+  update() {
+    this.speed = gameSpeed * this.speedModifier;
+    if (this.x <= -this.width) {
+      this.x = 0;
+    }
+    this.x = Math.floor(this.x - this.speed);
+    // this.x = gameFrame * this.speed % this.width;
+  }
+  draw() {
+    if(this.type == 'true'){
+        ctx.drawImage(this.image, this.x, this.y + 200, this.width, this.height);
+        ctx.drawImage(
+          this.image,
+          this.x + this.width,
+          this.y + 200,
+          this.width,
+          this.height
+        );
+    } else {
+        ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+        ctx.drawImage(
+          this.image,
+          this.x + this.width,
+          this.y,
+          this.width,
+          this.height
+        );
+    }
+  }
+}
+
+const layer1 = new backgroundLayer(backgroundLayer1, 0.2);
+const layer2 = new backgroundLayer(backgroundLayer2, 0.4, 'true');
+const layer3 = new backgroundLayer(backgroundLayer3, 0.6,);
+const layer4 = new backgroundLayer(backgroundLayer4, 0.8, 'true');
+// const layer5 = new backgroundLayer(backgroundLayer5, 1);
+const backgroundLayers = [layer1, layer2, layer3, layer4];
+
 function drawScore() {
     ctx.fillStyle = "black";
     ctx.fillText("Score: " + score, 55, 80);
@@ -202,8 +263,8 @@ function animate(timestamp){
         timeToNextRaven = 0;
         ravens.sort((a, b) => a.width - b.width);
     }
-    [...particles, ...ravens, ...explosions].forEach(object => object.update(deltaTime));
-    [...particles, ...ravens, ...explosions].forEach(object => object.draw());
+    [...backgroundLayers, ...particles, ...ravens, ...explosions].forEach(object => object.update(deltaTime));
+    [...backgroundLayers, ...particles, ...ravens, ...explosions].forEach(object => object.draw());
     ravens = ravens.filter(raven => !raven.markedForDeletion);
     explosions = explosions.filter((explosion) => !explosion.markedForDeletion);
     particles = particles.filter((particle) => !particle.markedForDeletion);
