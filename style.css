@@ -1,20 +1,27 @@
 body {
-    /* background: black; */
+    /* background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXhUuwTzOyIUafJLY7CFibcxQR6mm6tQJarw&usqp=CAU'); */
+    background-size: cover;
+    background-position: center;
+    background: linear-gradient(to top, rgb(61, 15, 15), rgb(165, 48, 48), rgb(58, 58, 107));
+    /* background: linear-gradient(to top, rgb(69, 67, 67), grey, rgb(59, 59, 68)); */
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
 }
 
 #canvas1 {
-    border: 2px dotted black;
-    border-radius: 25px;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 500px;
-    height: 1000px;
-    background: black;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
-#canvas1:active {
-    cursor: pointer;
+#collisionCanvas {
+    opacity: 0;
 }
+ 
+/* #canvas1:active {
+    cursor: pointer;
+} */
 
