@@ -93,7 +93,7 @@ class Explosion {
         this.y = y;
         this.frame = 0;
         this.sound = new Audio();
-        this.sound.src = '../Magic SFX Preview Pack/Fire impact 1.wav'
+        this.sound.src = '../boom.wav'
         this.timeSinceLastFrame = 0;
         this.frameInterval = 150;
         this.markedForDeletion = false;
@@ -263,8 +263,8 @@ function animate(timestamp){
         timeToNextRaven = 0;
         ravens.sort((a, b) => a.width - b.width);
     }
-    [...backgroundLayers, ...particles, ...ravens, ...explosions].forEach(object => object.update(deltaTime));
-    [...backgroundLayers, ...particles, ...ravens, ...explosions].forEach(object => object.draw());
+    [...particles, ...ravens, ...explosions].forEach(object => object.update(deltaTime));
+    [...particles, ...ravens, ...explosions].forEach(object => object.draw());
     ravens = ravens.filter(raven => !raven.markedForDeletion);
     explosions = explosions.filter((explosion) => !explosion.markedForDeletion);
     particles = particles.filter((particle) => !particle.markedForDeletion);

@@ -1,15 +1,17 @@
 body {
-    /* background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXhUuwTzOyIUafJLY7CFibcxQR6mm6tQJarw&usqp=CAU'); */
+    background-image: url('./pointAndShootBackground.webp');
     background-size: cover;
     background-position: center;
-    background: linear-gradient(to top, rgb(61, 15, 15), rgb(165, 48, 48), rgb(58, 58, 107));
+    /* background: linear-gradient(to top, rgb(61, 15, 15), rgb(165, 48, 48), rgb(58, 58, 107)); */
     /* background: linear-gradient(to top, rgb(69, 67, 67), grey, rgb(59, 59, 68)); */
     width: 100vw;
     height: 100vh;
     overflow: hidden;
+    cursor: url('./target32x32.png'), auto;
 }
 
 #canvas1 {
+    /* cursor: url('https://previews.123rf.com/images/boxerx/boxerx1904/boxerx190400220/122922990-sniper-rifle-aim-isolated-on-transparent-background-crosshair-target-choose-destination-icon-aim-sho.jpg') 10 3, auto; */
     position: absolute;
     top: 0;
     left: 0;
